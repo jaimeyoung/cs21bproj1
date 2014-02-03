@@ -1,0 +1,40 @@
+<h1>ToDo List</h1>
+
+<%= link_to 'New Task', new_task_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Tasks</th>
+      <th>Category</th>
+      <th>Due date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+    <%= form_tag("/tasks/complete/", :method => "post") do %> 
+    <% @tasks.each do |task| %>
+      <tr>
+        <% if task.completed == true %> 
+        <td> <%= check_box_tag "task_checkbox[]",task.id %> <strike><%= task.tasks %></strike></td>
+        <% else %>
+        <td> <%= check_box_tag "task_checkbox[]",task.id %> <%= task.tasks %></td> 
+        <% end %> 
+        <td><%= task.category %></td>
+        <td><%= task.due_date %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    
+
+<br>
+<%= submit_tag("Complete Tasks", :class=>"btn btn-success") %> 
+<% end %> 
+
+
