@@ -62,15 +62,16 @@ class TasksController < ApplicationController
     end
   end
 
-  def complete 
-    params[:task_checkbox].each do |check| 
-    task_id = check 
-    t = Task.find_by_id(task_id)
-    t.update_attribute(:completed,true)
-    end 
-  redirect_to :action => 'index'  
-
-  end 
+def complete 
+    if params[:task_checkbox] 
+      params[:task_checkbox].each do |check| 
+      task_id = check 
+      t = Task.find_by_id(task_id)
+      t.update_attribute(:completed,true)
+      end 
+    end
+    redirect_to :action => 'index'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
