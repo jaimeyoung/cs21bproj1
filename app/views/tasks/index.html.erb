@@ -1,15 +1,12 @@
-<h1>ToDo List</h1>
+<h1>Your To Do List</h1>
 
-<%= link_to 'New Task', new_task_path %>
-<table>
+<%= link_to 'Create New Task', new_task_path %>
+<table border="3" width = "50%" cellpading="4" cellspacing ="3">
   <thead>
     <tr>
-      <th>Tasks</th>
-      <th>Category</th>
-      <th>Due date</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th >Tasks</th>
+      <th >Category</th>
+      <th >Due date</th>
     </tr>
   </thead>
  
@@ -26,15 +23,15 @@
         <td><%= task.due_date %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
     
-
 <br>
+
 <%= submit_tag("Complete Tasks", :class=>"btn btn-success") %> 
 <% end %> 
+
 
 
