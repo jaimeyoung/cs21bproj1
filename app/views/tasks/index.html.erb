@@ -6,7 +6,7 @@
 </ul>
 
 <body background="http://25.media.tumblr.com/721a9a32e2aa785fed67ca95043ed76b/tumblr_mygb37aq7J1qcj8jbo1_1280.jpg" /> 
-<h1 align="center">  <span class="label label-default">"I do not pray for a lighter load, but rather for a stronger back"</u></ul> - Anonymous</span></h1>
+<h1 align="center">  <span class="label label-default">"I do not pray for a lighter load, but rather I pray for a stronger back"</u></ul> - Anonymous</span></h1>
 
 <br><br>
 
@@ -47,12 +47,18 @@
 </ul></ul></ul></ul>
 
 <ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul>
-<form class="navbar-form navbar-left" role="search">
+
+<%= form_tag("/tasks/search/", :method => "get") do %> 
+
+
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search">
+    <%= text_field_tag :search %>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+  <%= submit_tag "Submit", class: "btn btn-default" %>
+
+  <% end %> 
+ 
+
 </ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul>
 
 
