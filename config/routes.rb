@@ -1,12 +1,18 @@
 Finalprojv3::Application.routes.draw do
-  resources :tasks
+  resources :tasks do
+  	collection do
+  		get 'completed' 
+  		post 'complete'
+  		get 'search'
+  	end
+    
+  end
 
 root 'pages#hello'
 
 get '/help' => 'pages#help'
-post '/help' => 'pages#help'
 
-get 'tasks/complete' => 'tasks#complete' 
-post 'tasks/complete' => 'tasks#complete'
+
+
 
 end

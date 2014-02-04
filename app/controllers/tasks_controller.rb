@@ -8,6 +8,11 @@ class TasksController < ApplicationController
     @new_task = Task.new 
   end
 
+  def completed
+    @tasks = Task.all.where(completed: true)
+    @new_task = Task.new 
+  end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show
@@ -62,6 +67,9 @@ class TasksController < ApplicationController
     end
   end
 
+def search 
+  @tasks = Task.where(tasks: params[:search])
+end
 def complete 
     if params[:task_checkbox] 
       params[:task_checkbox].each do |check| 
