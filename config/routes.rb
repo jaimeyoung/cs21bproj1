@@ -4,6 +4,7 @@ Finalprojv3::Application.routes.draw do
   		get 'completed' 
   		post 'complete'
   		get 'search'
+  		
   	end
     
   end
