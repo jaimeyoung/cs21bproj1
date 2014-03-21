@@ -4,14 +4,25 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @task = current_user.tasks.build
+    @tasks = current_user.tasks.order('created_at DESC')
+  end
+
+  def all
     @tasks = Task.all
-    @new_task = Task.new 
   end
 
   def completed
-    @tasks = Task.all.where(completed: true)
-    @new_task = Task.new 
+   @tasks=current_user.tasks.where(is_completed: true)
   end
+
+  def incomplete
+    @tasks = current_user.tasks.where(is_completed: false)
+  end 
+
+  def today 
+    @tasks = current_user.tasks.where(due_date: Date.today)
+  end 
 
   # GET /tasks/1
   # GET /tasks/1.json
@@ -20,7 +31,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   # GET /tasks/1/edit
@@ -79,8 +90,14 @@ def complete
       t.update_attribute(:completed,true)
       end 
     end
-    redirect_to :action => 'index'
+    redirect_to :action => 'all'
   end
+
+
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -93,6 +110,12 @@ def complete
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:tasks, :category, :due_date)
+      params.require(:task).permit(:tasks, :category, :due_date, :user_id)
     end
+
+    def task_model
+      Task.owner(current_user)
+    end
+
+
 end

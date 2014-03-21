@@ -1,0 +1,63 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="/">Home</a></li>
+  <li><a href="/help">Help</a></li>
+  <li><a href="#">SignUp/In</a></li>
+  <li><a href="/tasks">Your To Do List</a></li>
+  <li><a href="tasks/completed">Completed</a></li>
+</ul>
+<body background="http://25.media.tumblr.com/721a9a32e2aa785fed67ca95043ed76b/tumblr_mygb37aq7J1qcj8jbo1_1280.jpg" /> 
+<h1 align="center">  <span class="label label-default">"I do not pray for a lighter load, but rather I pray for a stronger back"</u></ul> - Anonymous</span></h1>
+
+<br><br>
+
+<ul><ul><ul><ul>
+
+<table border="3" width = "50%" cellpading="4" cellspacing ="3">
+  <thead>
+    <tr>
+      <th >Tasks</th>
+      <th >Category</th>
+      <th >Due date</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+    <%= form_tag("/tasks/complete/", :method => "post") do %> 
+    <% @tasks.each do |task| %>
+      <tr>
+        <% if task.completed == true %> 
+        <td align="left"> <%= check_box_tag "task_checkbox[]",task.id %> <strike><%= task.tasks %></strike></td>
+        <% else %>
+        <td align="left"> <%= check_box_tag "task_checkbox[]",task.id %> <%= task.tasks %></td> 
+        <% end %> 
+        <td align="center"><%= task.category %></td>
+        <td align="center"><%= task.due_date %></td>
+        <td align="center"><%= link_to 'Show', task %></td>
+        <td align="center"><%= link_to 'Edit', edit_task_path(task) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    
+<br>
+
+<%= submit_tag("Complete Tasks", :class=>"btn btn-success") %> 
+<% end %> 
+</ul></ul></ul></ul>
+
+<ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul><ul>
+
+<%= form_tag("/tasks/search/", :method => "get") do %> 
+
+
+  <div class="form-group">
+    <%= text_field_tag :search %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-default" %>
+
+  <% end %> 
+ 
+
+</ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul>
+
+
