@@ -1,4 +1,10 @@
 Finalprojv3::Application.routes.draw do
+  devise_for :users
+  devise_scope :user do
+        get '/logout' => 'devise/sessions#destroy'
+  end
+  
+  root to: 'tasks#index'
   resources :tasks do
   	collection do
   		get 'completed' 
@@ -8,8 +14,6 @@ Finalprojv3::Application.routes.draw do
   	end
     
   end
-
-root 'pages#hello'
 
 get '/help' => 'pages#help'
 

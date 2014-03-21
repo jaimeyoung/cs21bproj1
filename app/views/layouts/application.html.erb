@@ -6,6 +6,16 @@
   <%= javascript_include_tag "theme", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
+<% if user_signed_in? %>
+            You are currenty signed in as <b><i><%= current_user.name %></b></i>
+        <%= link_to "Sign out", logout_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %>
+          or <%= link_to "Sign in", new_user_session_path %>
+<% end %>
+
+
 <body>
 
 <%= yield %>
